@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -174,31 +174,32 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>unicorn_static</RootNamespace>
     <ProjectName>unicorn_static</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -238,7 +239,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;inline=__inline;__func__=__FUNCTION__;__i386__;UNICORN_HAS_ARM;UNICORN_HAS_ARM64;UNICORN_HAS_M68K;UNICORN_HAS_MIPS;UNICORN_HAS_MIPS64;UNICORN_HAS_MIPSEL;UNICORN_HAS_MIPS64EL;UNICORN_HAS_SPARC;UNICORN_HAS_X86;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;inline=__inline;__func__=__FUNCTION__;__i386__;UNICORN_HAS_X86;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;..;../../../include;../../../qemu;../../../qemu/include;../../../qemu/tcg</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4244 /wd4267 %(AdditionalOptions)</AdditionalOptions>
@@ -250,7 +251,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>aarch64-softmmu.lib;aarch64eb-softmmu.lib;arm-softmmu.lib;armeb-softmmu.lib;m68k-softmmu.lib;mips-softmmu.lib;mips64-softmmu.lib;mipsel-softmmu.lib;mips64el-softmmu.lib;sparc-softmmu.lib;sparc64-softmmu.lib;x86_64-softmmu.lib</AdditionalDependencies>
+      <AdditionalDependencies>x86_64-softmmu.lib</AdditionalDependencies>
     </Lib>
     <PreBuildEvent>
       <Command>..\prebuild_script.bat</Command>
@@ -288,7 +289,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;inline=__inline;__func__=__FUNCTION__;__i386__;UNICORN_HAS_ARM;UNICORN_HAS_ARM64;UNICORN_HAS_M68K;UNICORN_HAS_MIPS;UNICORN_HAS_MIPS64;UNICORN_HAS_MIPSEL;UNICORN_HAS_MIPS64EL;UNICORN_HAS_SPARC;UNICORN_HAS_X86;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;inline=__inline;__func__=__FUNCTION__;__i386__;UNICORN_HAS_X86;WIN32_LEAN_AND_MEAN</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;..;../../../include;../../../qemu;../../../qemu/include;../../../qemu/tcg</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4244 /wd4267 %(AdditionalOptions)</AdditionalOptions>
@@ -303,21 +304,14 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>aarch64-softmmu.lib;aarch64eb-softmmu.lib;arm-softmmu.lib;armeb-softmmu.lib;m68k-softmmu.lib;mips-softmmu.lib;mips64-softmmu.lib;mipsel-softmmu.lib;mips64el-softmmu.lib;sparc-softmmu.lib;sparc64-softmmu.lib;x86_64-softmmu.lib</AdditionalDependencies>
+      <AdditionalDependencies>x86_64-softmmu.lib</AdditionalDependencies>
     </Lib>
     <PreBuildEvent>
       <Command>..\prebuild_script.bat</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>mkdir $(SolutionDir)distro\
-mkdir $(SolutionDir)distro\include
-mkdir $(SolutionDir)distro\include\unicorn
-mkdir $(SolutionDir)distro\$(Platform)
-
-copy $(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib $(SolutionDir)distro\$(Platform)\
-
-copy $(SolutionDir)..\include\unicorn\*.h $(SolutionDir)distro\include\unicorn\
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
