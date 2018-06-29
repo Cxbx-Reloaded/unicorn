@@ -518,6 +518,9 @@ uc_err uc_mem_read(uc_engine *uc, uint64_t address, void *bytes, size_t size);
 UNICORN_EXPORT
 uc_err uc_emu_start(uc_engine *uc, uint64_t begin, uint64_t until, uint64_t timeout, size_t count);
 
+UNICORN_EXPORT
+uc_err uc_emu_interrupt(uc_engine* uc, uint8_t irql);
+
 /*
  Stop emulation (which was started by uc_emu_start() API.
  This is typically called from callback functions registered via tracing APIs.

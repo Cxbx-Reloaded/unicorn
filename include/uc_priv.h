@@ -150,6 +150,7 @@ struct uc_struct {
     uc_arch arch;
     uc_mode mode;
     uc_err errnum;  // qemu/cpu-exec.c
+	uint8_t irql;
     AddressSpace as;
     query_t query;
     reg_read_t reg_read;

@@ -245,7 +245,7 @@
 #define cpu_inb cpu_inb_x86_64
 #define cpu_inl cpu_inl_x86_64
 #define cpu_interrupt cpu_interrupt_x86_64
-#define cpu_interrupt_handler cpu_interrupt_handler_x86_64
+//#define cpu_interrupt_handler cpu_interrupt_handler_x86_64
 #define cpu_inw cpu_inw_x86_64
 #define cpu_io_recompile cpu_io_recompile_x86_64
 #define cpu_is_stopped cpu_is_stopped_x86_64

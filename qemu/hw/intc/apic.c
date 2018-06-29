@@ -161,9 +161,11 @@ void apic_sipi(DeviceState *dev)
 {
 }
 
-int apic_get_interrupt(DeviceState *dev)
+int apic_get_interrupt(struct uc_struct* uc, DeviceState *dev)
 {
-    return 0;
+	int irql = uc->irql;
+	uc->irql = -1;
+	return irql;
 }
 
 int apic_accept_pic_intr(DeviceState *dev)

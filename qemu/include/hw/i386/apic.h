@@ -5,7 +5,7 @@
 
 /* apic.c */
 int apic_accept_pic_intr(DeviceState *s);
-int apic_get_interrupt(DeviceState *s);
+int apic_get_interrupt(struct uc_struct *uc, DeviceState *s);
 void cpu_set_apic_base(struct uc_struct *uc, DeviceState *s, uint64_t val);
 uint64_t cpu_get_apic_base(struct uc_struct *uc, DeviceState *s);
 void cpu_set_apic_tpr(struct uc_struct *uc, DeviceState *s, uint8_t val);

@@ -1363,6 +1363,7 @@ void x86_uc_init(struct uc_struct* uc)
     uc->set_pc = x86_set_pc;
     uc->stop_interrupt = x86_stop_interrupt;
     uc->insn_hook_validate = x86_insn_hook_validate;
+	uc->irql = -1;
     uc_common_init(uc);
 }
 
