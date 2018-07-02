@@ -69,10 +69,11 @@ int cpu_get_pic_interrupt(CPUX86State *env)
     X86CPU *cpu = x86_env_get_cpu(env);
     int intno;
 
-     intno = apic_get_interrupt(env->uc, cpu->apic_state);
+    intno = apic_get_interrupt(env->uc, cpu->apic_state);
     if (intno >= 0) {
         return intno;
     }
+
     /* read the irq from the PIC */
     if (!apic_accept_pic_intr(cpu->apic_state)) {
         return -1;

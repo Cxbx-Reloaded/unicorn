@@ -163,14 +163,21 @@ void apic_sipi(DeviceState *dev)
 
 int apic_get_interrupt(struct uc_struct* uc, DeviceState *dev)
 {
-	int irql = uc->irql;
-	uc->irql = -1;
-	return irql;
+	int intno = -1;
+
+	// Unicorn: call registered interrupt callbacks
+	struct hook *hook;
+	HOOK_FOREACH_VAR_DECLARE;
+	HOOK_FOREACH(uc, hook, UC_HOOK_GET_INTERRUPT) {
+		intno = ((uc_cb_get_interrupt)hook->callback)(uc, hook->user_data);
+	}
+
+	return intno;
 }
 
 int apic_accept_pic_intr(DeviceState *dev)
 {
-    return 0;
+	return 0;
 }
 
 static void apic_pre_save(APICCommonState *s)

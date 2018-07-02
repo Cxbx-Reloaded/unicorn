@@ -505,7 +505,9 @@ extern CPUInterruptHandler cpu_interrupt_handler;
  */
 static inline void cpu_interrupt(CPUState *cpu, int mask)
 {
-    cpu_interrupt_handler(cpu, mask);
+	if (cpu) {
+		cpu_interrupt_handler(cpu, mask);
+	}
 }
 
 #else /* USER_ONLY */

@@ -109,7 +109,7 @@ enum uc_hook_idx {
     UC_HOOK_MEM_WRITE_IDX,
     UC_HOOK_MEM_FETCH_IDX,
     UC_HOOK_MEM_READ_AFTER_IDX,
-
+	UC_HOOK_GET_INTERRUPT_IDX,
     UC_HOOK_MAX,
 };
 
@@ -150,7 +150,6 @@ struct uc_struct {
     uc_arch arch;
     uc_mode mode;
     uc_err errnum;  // qemu/cpu-exec.c
-	uint8_t irql;
     AddressSpace as;
     query_t query;
     reg_read_t reg_read;

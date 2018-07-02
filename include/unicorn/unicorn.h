@@ -195,6 +195,9 @@ typedef uint64_t (*uc_cb_mmio_read)(struct uc_struct* uc, void *opaque, uint64_t
 
 typedef void (*uc_cb_mmio_write)(struct uc_struct* uc, void *opaque, uint64_t addr, uint64_t data, unsigned size);
 
+/* Interruot Callbacks */
+typedef int(*uc_cb_get_interrupt)(struct uc_struct* uc, void *opaque);
+
 // All type of memory accesses for UC_HOOK_MEM_*
 typedef enum uc_mem_type {
     UC_MEM_READ = 16,   // Memory is read from
@@ -240,6 +243,9 @@ typedef enum uc_hook_type {
     // Hook memory read events, but only successful access.
     // The callback will be triggered after successful read.
     UC_HOOK_MEM_READ_AFTER = 1 << 13,
+	
+	// Interrupt Hooks
+	UC_HOOK_GET_INTERRUPT = 1 << 14,
 } uc_hook_type;
 
 // Hook type for all events of unmapped memory access
@@ -519,7 +525,7 @@ UNICORN_EXPORT
 uc_err uc_emu_start(uc_engine *uc, uint64_t begin, uint64_t until, uint64_t timeout, size_t count);
 
 UNICORN_EXPORT
-uc_err uc_emu_interrupt(uc_engine* uc, uint8_t irql);
+uc_err uc_emu_interrupt(uc_engine* uc);
 
 /*
  Stop emulation (which was started by uc_emu_start() API.

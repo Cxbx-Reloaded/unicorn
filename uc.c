@@ -628,13 +628,12 @@ uc_err uc_emu_start(uc_engine* uc, uint64_t begin, uint64_t until, uint64_t time
 }
 
 UNICORN_EXPORT
-uc_err uc_emu_interrupt(uc_engine* uc, uint8_t irql)
+uc_err uc_emu_interrupt(uc_engine* uc)
 {
 	if (!uc->current_cpu) {
 		return UC_ERR_OK;
 	}
 
-	uc->irql = irql;
 	cpu_interrupt(uc->current_cpu, 0x0002 /*CPU_INTERRUPT_HARD*/);
 	return UC_ERR_OK;
 }
